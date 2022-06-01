@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import axios from "axios";
+import RestroomCommentChain from './RestroomCommentChain';
 
 export default class RestroomDiscussion extends Component {
   constructor(props) {
@@ -20,7 +21,7 @@ export default class RestroomDiscussion extends Component {
       <>
         <h2>Discussion Time.</h2>
         <p>There are {this.props.num_comments} comments on this restroom. </p>
-        {this.state.comments.map(comment => <p key={comment._id}>From {comment.username}: {comment.body}</p>)}
+        {this.state.comments.map(comment => <RestroomCommentChain key={comment._id} id={comment._id} username={comment.username} body={comment.body} />)}
       </>
     );
   }
