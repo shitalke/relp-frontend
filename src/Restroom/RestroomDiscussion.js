@@ -1,24 +1,24 @@
 import React, {Component} from 'react';
+import axios from "axios";
 
-const comments = [
-  {
-    user: "user0",
-    comment: "yurp that was a mad shit i took"
-  },
-  {
-    user: "user1",
-    comment: "nah bruh im pissing my pants"
-  },
-  {
-    user: "user3",
-    comment: "TODO we are replacing this constant with a function call to the backend later"
-  },
-]
 export default class RestroomDiscussion extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {comments: []};
+  }
+
+  componentDidMount = () => {
+    axios.get("/restrooms/comments/6297e0e2a3380b5be5b7139f/none").then(response => {
+      this.setState({
+        comments: response.data
+      })
+    })
+  }
+
   render() {
     return(
       <>
-        {comments.map(comment => <p>From {comment.user}: {comment.comment}</p>)}
+        {this.state.comments.map(comment => <p key={comment._id}>From {comment.username}: {comment.body}</p>)}
       </>
     );
   }
