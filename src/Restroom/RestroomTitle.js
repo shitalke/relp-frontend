@@ -5,6 +5,7 @@ export default class RestroomTitle extends Component {
     return(
       <>
         <h1>{this.props.name}</h1>
+        <p>Location: {this.props.location}</p>
       </>
     );
   }

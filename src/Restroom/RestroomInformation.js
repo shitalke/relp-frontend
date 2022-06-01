@@ -4,8 +4,9 @@ export default class RestroomInformation extends Component {
   render() {
     return(
       <>
-        <h2>The Information of the Restroom is here.</h2>
-        <p>Maybe this includes Rating, # of ratings, map</p>
+        <h2>Information.</h2>
+        <p>Handicap? {this.props.handicap ? 'YES' : 'NO'}</p>
+        <p>Single Use? {this.props.single_use ? 'YES' : 'NO'}</p>
       </>
     );
   }

@@ -8,7 +8,7 @@ export default class RestroomDiscussion extends Component {
   }
 
   componentDidMount = () => {
-    axios.get("/restrooms/comments/6297e0e2a3380b5be5b7139f/none").then(response => {
+    axios.get("/restrooms/comments/"+this.props.id+"/none").then(response => {
       this.setState({
         comments: response.data
       })
@@ -18,6 +18,8 @@ export default class RestroomDiscussion extends Component {
   render() {
     return(
       <>
+        <h2>Discussion Time.</h2>
+        <p>There are {this.props.num_comments} comments on this restroom. </p>
         {this.state.comments.map(comment => <p key={comment._id}>From {comment.username}: {comment.body}</p>)}
       </>
     );
