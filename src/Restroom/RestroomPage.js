@@ -5,6 +5,9 @@ import RestroomDiscussion from './RestroomDiscussion';
 import RestroomMap from './RestroomMap';
 import RestroomTitle from './RestroomTitle';
 import RestroomRating from './RestroomRating';
+import RestroomReview from './RestroomReview';
+import { Container } from 'reactstrap';
+
 import axios from "axios";
 
 const restroom_id = "62911007df852dc6cadb3ba4";
@@ -47,7 +50,8 @@ export default class RestroomPage extends Component {
 
   render() {
     return(
-      <>
+      <Container className="bg-light border text-center" fluid="sm">
+
         <RestroomTitle name={this.state.name} location={this.state.location}/>
 
         <RestroomGallery />
@@ -58,8 +62,11 @@ export default class RestroomPage extends Component {
 
         <RestroomMap latitude={this.state.latitude} longitude={this.state.longitude}/>
 
+        <RestroomReview />
+
         <RestroomDiscussion id={restroom_id} num_comments={this.state.num_comments}/>
-      </>
+
+      </Container>
     );
   }
 }

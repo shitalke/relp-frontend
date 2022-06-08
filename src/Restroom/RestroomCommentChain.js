@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import axios from "axios";
+import { CardText } from 'reactstrap';
 
 export default class RestroomCommentChain extends Component {
   constructor(props) {
@@ -19,8 +20,8 @@ export default class RestroomCommentChain extends Component {
   render() {
     return(
       <>
-        <p>From {this.props.username}: {this.props.body}</p>
-        {this.state.replies.map(comment => <p key={comment._id}>In response {this.props.username}, {comment.username} says: {comment.body}</p>)}
+        <CardText>From {this.props.username}: {this.props.body}</CardText>
+        {this.state.replies.map(comment => <CardText key={comment._id}>In response {this.props.username}, {comment.username} says: {comment.body}</CardText>)}
       </>
     );
   }
