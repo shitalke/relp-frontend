@@ -22,7 +22,6 @@ function MapComonent({ name, lat, lng }) {
 
   // redirect function -- invoked when map is clicked
   const redirectToLocation = () => {
-    console.log("hello");
     // get user's current location
     axios({
       method: "post",
@@ -52,8 +51,7 @@ function MapComonent({ name, lat, lng }) {
         label={name}
         position={{ lat: lat, lng: lng }}
         zIndex={10}
-      ></Marker>
-      <></>
+      />
     </GoogleMap>
   ) : (
     <></>
