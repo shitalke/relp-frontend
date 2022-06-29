@@ -23,15 +23,15 @@ function MapComonent({ name, lat, lng }) {
   // redirect function -- invoked when map is clicked
   const redirectToLocation = () => {
     console.log("hello");
+    // get user's current location
     axios({
       method: "post",
       url: `https://www.googleapis.com/geolocation/v1/geolocate?key=${process.env.REACT_APP_GOOGLE_MAPS_KEY}`,
       data: {},
     })
       .then((res) => {
-        // user's location found => generate redirect url for directions to place
-        // TODO: change destination parameter to props.lattitude, props.longitude
-        const url = `https://www.google.com/maps/dir/?api=1&origin=${res.data.location.lat},${res.data.location.lng}&destination=${ucsdCenter.lat},${ucsdCenter.lng}&travelmode=walking`;
+        // generate redirect url for directions to restroom
+        const url = `https://www.google.com/maps/dir/?api=1&origin=${res.data.location.lat},${res.data.location.lng}&destination=${lat},${lng}&travelmode=walking`;
         window.open(url, "_blank");
       })
       .catch((err) => {
@@ -48,7 +48,11 @@ function MapComonent({ name, lat, lng }) {
       clickableIcons={false}
       onClick={() => redirectToLocation()}
     >
-      <Marker label={name} position={ucsdCenter} zIndex={10}></Marker>
+      <Marker
+        label={name}
+        position={{ lat: lat, lng: lng }}
+        zIndex={10}
+      ></Marker>
       <></>
     </GoogleMap>
   ) : (
