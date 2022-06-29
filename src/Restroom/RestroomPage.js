@@ -60,7 +60,7 @@ export default class RestroomPage extends Component {
 
         <RestroomInformation handicap={this.state.handicap} single_use={this.state.single_use} />
 
-        <RestroomMap latitude={this.state.latitude} longitude={this.state.longitude}/>
+        <RestroomMap latitude={this.state.latitude} longitude={this.state.longitude} name={this.state.name} />
 
         <RestroomReview />
 
