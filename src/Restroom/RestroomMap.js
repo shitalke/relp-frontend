@@ -49,7 +49,7 @@ function MapComonent({ name, lat, lng }) {
     >
       <Marker
         label={name}
-        position={{ lat: lat, lng: lng }}
+        position={{ lat: parseFloat(lat), lng: parseFloat(lng) }}
         zIndex={10}
       />
     </GoogleMap>
