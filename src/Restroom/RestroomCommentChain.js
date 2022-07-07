@@ -77,6 +77,27 @@ function CommentComponent(props) {
   );
 }
 
+// reply component -- used in CommentComponent
+function Reply() {
+  const [reply, setReply] = useState("");
+
+  // TODO: make post request to backend when comment is submitted, and rerender
+  const handleSubmit = () => {
+    console.log("submitted");
+  };
+
+  return (
+    <LineContainer reply>
+      <ReplyContainer
+        placeholder="Reply"
+        value={reply}
+        onChange={(e) => setReply(e.target.value)}
+        onKeyDown={() => handleSubmit()}
+      />
+    </LineContainer>
+  );
+}
+
 // STYLES - CommentComponent
 const LineContainer = styled.div`
   display: flex;
@@ -158,27 +179,7 @@ const Heart = styled.img`
   width: 16px;
 `;
 
-// reply component -- used in CommentComponent
-function Reply() {
-  const [reply, setReply] = useState("");
-
-  // TODO: make post request to backend when comment is submitted, and rerender
-  const handleSubmit = () => {
-    console.log("submitted");
-  };
-
-  return (
-    <LineContainer reply>
-      <ReplyContainer
-        placeholder="Reply"
-        value={reply}
-        onChange={(e) => setReply(e.target.value)}
-        onKeyDown={() => handleSubmit()}
-      />
-    </LineContainer>
-  );
-}
-
+// STYLES - Reply
 const ReplyContainer = styled.input`
   background: #ececec;
   filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
