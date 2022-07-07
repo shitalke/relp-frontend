@@ -7,7 +7,6 @@ import poopEmojiImg from "../assets/brownPoop.png";
 import like from "../assets/like.png";
 import ratingPoop from "../assets/ratingPoop.png";
 
-
 export default function RestroomCommentChain(props) {
   const [replies, setReplies] = useState([]);
 
@@ -46,7 +45,7 @@ export default function RestroomCommentChain(props) {
 function CommentComponent(props) {
   // TODO make like button functional
   const handleLike = () => {
-    console.log("this comment was liked")
+    console.log("this comment was liked");
   };
 
   return (
@@ -77,7 +76,6 @@ function CommentComponent(props) {
     </LineContainer>
   );
 }
-
 
 // STYLES - CommentComponent
 const LineContainer = styled.div`
@@ -160,20 +158,24 @@ const Heart = styled.img`
   width: 16px;
 `;
 
-
 function Reply() {
-  const [reply, setReply] = useState("")
+  const [reply, setReply] = useState("");
 
   // TODO: make post request to backend when comment is submitted, and rerender
   const handleSubmit = () => {
-    console.log("submitted")
-  }
+    console.log("submitted");
+  };
 
-  return(
-    <LineContainer reply >
-      <ReplyContainer placeholder="Reply" value={reply} onChange={(e) => setReply(e.target.value)} onKeyDown={() => handleSubmit()} />
+  return (
+    <LineContainer reply>
+      <ReplyContainer
+        placeholder="Reply"
+        value={reply}
+        onChange={(e) => setReply(e.target.value)}
+        onKeyDown={() => handleSubmit()}
+      />
     </LineContainer>
-  )
+  );
 }
 
 const ReplyContainer = styled.input`
