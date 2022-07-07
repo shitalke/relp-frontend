@@ -158,6 +158,7 @@ const Heart = styled.img`
   width: 16px;
 `;
 
+// reply component -- used in CommentComponent
 function Reply() {
   const [reply, setReply] = useState("");
 
