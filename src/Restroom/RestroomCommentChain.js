@@ -10,7 +10,6 @@ export default function RestroomCommentChain(props) {
 
   useEffect(() => {
     axios.get("/restrooms/replies/" + props.id).then((response) => {
-      console.log(response.data);
       setReplies(response.data);
     });
   }, [props.id]);
