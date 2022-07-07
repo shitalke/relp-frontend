@@ -24,9 +24,6 @@ export default class RestroomDiscussion extends Component {
       <Card>
         <CardBody>
           <CardTitle tag="h5">Discussion Time.</CardTitle>
-          <CardSubtitle className="mb-2 text-muted" tag="h6">
-            There are {this.props.num_comments} comments on this restroom.{" "}
-          </CardSubtitle>
           {this.state.comments.map((comment) => (
             <RestroomCommentChain
               key={comment._id}

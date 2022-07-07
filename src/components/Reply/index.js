@@ -14,8 +14,10 @@ export default function Reply() {
   const [reply, setReply] = useState("");
 
   // TODO: make post request to backend when comment is submitted, and rerender
-  const handleSubmit = () => {
-    console.log("submitted");
+  const handleSubmit = (e) => {
+    if (e.key == "Enter"){
+      console.log("submitted");
+    } 
   };
 
   return (
@@ -24,7 +26,7 @@ export default function Reply() {
         placeholder="Reply"
         value={reply}
         onChange={(e) => setReply(e.target.value)}
-        onKeyDown={() => handleSubmit()}
+        onKeyDown={(e) => handleSubmit(e)}
       />
     </LineContainer>
   );
