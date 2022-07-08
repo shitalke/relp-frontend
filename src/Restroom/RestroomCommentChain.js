@@ -1,28 +1,39 @@
-import React, {Component} from 'react';
+import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { CardText } from 'reactstrap';
 
-export default class RestroomCommentChain extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {replies: []};
-  }
+// components
+import Reply from "../components/Reply";
+import CommentThread from "../components/CommentThread";
 
-  componentDidMount = () => {
-    axios.get("/restrooms/replies/"+this.props.id).then(response => {
-      console.log(response.data)
-      this.setState({
-        replies: response.data
-      })
-    })
-  }
+export default function RestroomCommentChain(props) {
+  const [replies, setReplies] = useState([]);
 
-  render() {
-    return(
-      <>
-        <CardText>From {this.props.username}: {this.props.body}</CardText>
-        {this.state.replies.map(comment => <CardText key={comment._id}>In response {this.props.username}, {comment.username} says: {comment.body}</CardText>)}
-      </>
-    );
-  }
+  useEffect(() => {
+    axios.get("/restrooms/replies/" + props.id).then((response) => {
+      setReplies(response.data);
+    });
+  }, [props.id]);
+
+  return (
+    <>
+      <CommentThread
+        username={props.username}
+        likes={props.num_likes}
+        comment={props.body}
+        rating={4}
+      />
+      {replies.map((comment) => {
+        return (
+          <CommentThread
+            key={comment._id}
+            username={comment.username}
+            comment={comment.body}
+            likes={comment.num_likes}
+            reply
+          />
+        );
+      })}
+      <Reply />
+    </>
+  );
 }
