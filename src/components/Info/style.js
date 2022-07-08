@@ -8,6 +8,7 @@ export const InfoContainer = styled.div`
 `;
 
 export const IconImg = styled.img`
+  height: ${props => props.width || "22px"};
   width: ${props => props.width || "22px"};
   float: left;
 `;
