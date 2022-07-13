@@ -1,13 +1,14 @@
-import React from 'react';
-import RestroomPage from './Restroom/RestroomPage';
-import './App.css';
-import 'bootstrap/dist/css/bootstrap.min.css';
+import React from "react";
+import LeaderboardPage from "./Leaderboard/LeaderboardPage";
+import "./App.css";
+import "bootstrap/dist/css/bootstrap.min.css";
 
 function App() {
   return (
     <>
-      <RestroomPage />
-    </>);
+      <LeaderboardPage />
+    </>
+  );
 }
 
 export default App;
