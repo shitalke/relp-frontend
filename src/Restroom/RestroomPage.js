@@ -7,11 +7,12 @@ import RestroomTitle from "./RestroomTitle";
 import RestroomRating from "./RestroomRating";
 import RestroomReview from "./RestroomReview";
 import {Container} from "reactstrap";
+import withParams from "../utils/withParams";
 
 import axios from "axios";
 
-const restroom_id = "62911007df852dc6cadb3ba4";
-export default class RestroomPage extends Component {
+// const restroom_id = "62911007df852dc6cadb3ba4";
+class RestroomPage extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -29,7 +30,7 @@ export default class RestroomPage extends Component {
   }
 
   componentDidMount = () => {
-    axios.get("/restrooms/info/" + restroom_id).then(response => {
+    axios.get("/restrooms/info/" + (this.props.params.restroom_id)).then(response => {
       console.log(response.data);
       this.setState({
         creation_date: response.data.creation_date,
@@ -72,10 +73,12 @@ export default class RestroomPage extends Component {
         <RestroomReview />
 
         <RestroomDiscussion
-          id={restroom_id}
+          id={this.props.params.restroom_id}
           num_comments={this.state.num_comments}
         />
       </Container>
     );
   }
 }
+
+export default withParams(RestroomPage);
