@@ -2,6 +2,7 @@ import React, {Component} from "react";
 import ProfileCard from "./ProfileCard";
 import ProfileReviewList from "./ProfileReviewList";
 import {Container} from "reactstrap";
+import withParams from "../utils/withParams";
 
 // import axios from "axios";
 
@@ -14,12 +15,12 @@ var review_list = [
   "restroom_id4",
   "restroom_id5",
   "restroom_id6",
-  "restroom_id7",
+  "restroom_id7", 
   "restroom_id8",
   "restroom_id9"
 ];
 
-export default class ProfilePage extends Component {
+class ProfilePage extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -27,8 +28,10 @@ export default class ProfilePage extends Component {
     };
   }
 
-  // TODO: add profile call here
-  componentDidMount = () => {};
+  // TODO: add profile call here -- based on user_id
+  componentDidMount = () => {
+    console.log(this.props.params.user_id)
+  };
 
   render() {
     return (
@@ -39,3 +42,5 @@ export default class ProfilePage extends Component {
     );
   }
 }
+
+export default withParams(ProfilePage);

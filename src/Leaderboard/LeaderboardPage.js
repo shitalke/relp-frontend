@@ -3,6 +3,7 @@ import LeaderboardTitle from "./LeaderboardTitle";
 import LeaderboardDescription from "./LeaderboardDescription";
 import LeaderboardList from "./LeaderboardList";
 import {Container} from "reactstrap";
+import withParams from "../utils/withParams";
 
 // import axios from "axios";
 
@@ -20,7 +21,7 @@ var leaderboard_list = [
   "restroom_id9"
 ];
 
-export default class LeaderboardPage extends Component {
+class LeaderboardPage extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -28,8 +29,10 @@ export default class LeaderboardPage extends Component {
     };
   }
 
-  // TODO: add leaderboard call here
-  componentDidMount = () => {};
+  // TODO: add leaderboard call here -- based on filter 
+  componentDidMount = () => {
+    console.log(this.props.params.filter);
+  };
 
   render() {
     return (
@@ -41,3 +44,5 @@ export default class LeaderboardPage extends Component {
     );
   }
 }
+
+export default withParams(LeaderboardPage);
