@@ -7,7 +7,7 @@ function RestroomCard({ id }) {
 
   async function handleSubmit(event) {
     event.preventDefault();
-    navigate(`restroom/${id}`, { replace: true });
+    navigate(`restroom/${id}`, { replace: false });
   }
 
   return <Card onClick={handleSubmit}>card with restroom id: {id}</Card>;
