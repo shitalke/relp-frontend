@@ -7,6 +7,7 @@ import {
 import LeaderboardPage from "./Leaderboard/LeaderboardPage";
 import RestroomPage from "./Restroom/RestroomPage";
 import ProfilePage from "./Profile/ProfilePage";
+import HomePage from "./Home/HomePage";
 import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 
@@ -14,7 +15,7 @@ function App() {
   return (
     <Router>
       <Routes>
-        <Route path="/" element={<div>Home Placeholder</div>} />
+        <Route path="/" element={<HomePage />} />
 
         <Route path="/leaderboard" element={<LeaderboardPage />} />
         <Route path="/leaderboard/:filter" element={<LeaderboardPage />} />
