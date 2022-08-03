@@ -7,7 +7,7 @@ function HomeCategory({ category, restroomIds }) {
     <Content>
       <CategoryTitle>{category}</CategoryTitle>
       <RestroomRow>
-        {restroomIds && restroomIds.map((id) => <RestroomCard id={id} />)}
+        {restroomIds && restroomIds.map((id, key) => <RestroomCard key={key} id={id} />)}
       </RestroomRow>
     </Content>
   );

@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import firebase from "./services/firebase-service";
+import {AuthContext, AuthProvider} from "./contexts/AuthContext";
 import LeaderboardPage from "./Leaderboard/LeaderboardPage";
 import RestroomPage from "./Restroom/RestroomPage";
 import ProfilePage from "./Profile/ProfilePage";
@@ -10,42 +10,40 @@ import Signup from "./User/Signup";
 import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 
-function App() {
-  const [user, setUser] = useState(false);
+function AppRouter() {
+  const { signedIn, currentUser } = React.useContext(AuthContext);
 
   useEffect(() => {
-    firebase.auth().onAuthStateChanged((user) => {
-      if (user) {
-        setUser(true);
-        console.log(user);
-        return user;
-      }
-    });
-  }, []);
-
+    console.log(signedIn);
+  }, [currentUser, signedIn])
 
   return (
     <Router>
       <Routes>
-        {/* Unprotected Routes */}
-        {!user && (
+        {/* Not logged in */}
+        {!signedIn && (
           <>
             <Route path="/login" element={<Login />} />
             <Route path="/signup" element={<Signup />} />
           </>
         )}
-        {/* Protected Routes */}
-        {user && (
-          <>
-            <Route path="/" element={<HomePage />} />
-            <Route path="/leaderboard/:filter" element={<LeaderboardPage />} />
-            <Route path="/restroom/:restroom_id" element={<RestroomPage />} />
-            <Route path="/profile/:user_id" element={<ProfilePage />} />
-            <Route path="*" element={<div>Oops, page not found</div>} />
-          </>
-        )}
+
+        <Route path="/" element={<HomePage />} />
+        <Route path="/leaderboard/:filter" element={<LeaderboardPage />} />
+        <Route path="/restroom/:restroom_id" element={<RestroomPage />} />
+        <Route path="/profile/:user_id" element={<ProfilePage />} />
+        <Route path="*" element={<div>Oops, page not found</div>} />
+
       </Routes>
     </Router>
+  );
+}
+
+function App() {
+  return (
+    <AuthProvider>
+      <AppRouter />
+    </AuthProvider>
   );
 }
 

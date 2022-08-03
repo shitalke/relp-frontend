@@ -1,24 +1,34 @@
-import React from "react";
-import { createUserAccount } from "../services/signup";
+import React, { useState } from "react";
+import { createUserAccount, loginUser } from "../services/signup";
+import { useNavigate } from "react-router-dom";
 
 function Signup() {
+  const [err, setErr] = useState();
+  let navigate = useNavigate();
+
   const handleSubmit = (event) => {
-    // Prevent page reload
     event.preventDefault();
-    console.log(event.target.uname.value);
-    console.log(event.target.email.value);
-    console.log(event.target.password.value);
-    console.log(event.target.password.value);
+    const form = event.target;
 
-
-    const reqBody = {
-        "username": event.target.uname.value,
-        "email": event.target.email.value,
-        "password": event.target.password.value,
-        "avatar": "toilet"
+    if (form.confirmPassword.value !== form.password.value) {
+      return setErr("Those passwords didn’t match. Try again.");
+    } else {
+      setErr("");
     }
-    
-    createUserAccount(reqBody);
+
+    createUserAccount({
+      username: form.uname.value,
+      email: form.email.value,
+      password: form.password.value,
+      avatar: "toilet",
+    })
+      .then(() => {
+        setErr("");
+        loginUser(form.email.value, form.password.value).then(
+          navigate("/", { replace: true })
+        );
+      })
+      .catch((err) => setErr("One or more fields is badly formatted, try again."));
   };
 
   return (
@@ -36,14 +46,15 @@ function Signup() {
           <label>Password </label>
           <input type="password" name="password" required />
         </div>
-        {/* <div className="input-container">
+        <div className="input-container">
           <label>Confirm Password </label>
-          <input type="password" name="password" required />
-        </div> */}
-        
+          <input type="password" name="confirmPassword" required />
+        </div>
+
         <div className="button-container">
           <input type="submit" />
         </div>
+        <div>{err}</div>
       </form>
     </div>
   );

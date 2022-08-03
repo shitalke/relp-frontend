@@ -1,12 +1,21 @@
-import React from "react";
+import React, {useState} from "react";
 import {loginUser} from "../services/signup";
+import { useNavigate } from "react-router-dom";
 
 function Login() {
+  const [err, setErr] = useState("");
+  let navigate = useNavigate();
+
 
   const handleSubmit = (event) => {
     // Prevent page reload
     event.preventDefault();
     loginUser(event.target.email.value, event.target.password.value)
+      .then(() => {
+        setErr("");
+        navigate("/", { replace: true })
+      })
+      .catch(err => setErr(err.message));
   };
 
   return (
@@ -24,6 +33,7 @@ function Login() {
           <input type="submit" />
         </div>
       </form>
+      <div>{err}</div>
     </div>
   );
 }
